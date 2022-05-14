@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Number</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid text-center">
+      <h1 class="">Great Number Game</h1>
+      <p>Choose a number between 1 and 100.</p>
+      <form class="text-center m-5" action="/guess" method="POST">
+        <div class="form-group">
+          <label for="num">Enter your guess here:</label>
+          <input type="text" name"guess" class="form-control-sm">
+        </div>
+        <input type="submit" value="guess" class="btn btn-dark m-3" />
+      </form>
+      {% if 'guess' in session: %} {% if session['guess'] == session['num'] %}
+      <div class="card bg-success">
+        <h2>You got the number!</h2>
+        <a href="/reset" class="btn btn-dark">Play Again</a>
+      </div>
+      {% elif session['guess'] < session['num'] %}
+      <div class="card bg-primary">
+        <h2>Too Low!!!</h2>
+      </div>
+      {% else %}
+      <div class="card bg-danger">
+        <h2>Too High!!!</h2>
+      </div>
+      {% endif %} {% endif %}
+    </div>
+  </body>
+</html>
